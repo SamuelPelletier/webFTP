@@ -1,16 +1,14 @@
 <?php
-$path = '/';
+
+require "config.php";
+
+$path = PATH;
 if(isset($_GET['path'])){
     $path = '/'.$_GET['path'].'/';
 }
 
-// connection settings
-$ftp_server = "localhost";  //address of ftp server.
-$ftp_user_name = "root"; // Username
-$ftp_user_pass = "root";   // Password
-
-$conn_id = ftp_connect($ftp_server);        // set up basic connection
-$login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass) or die("<h2 class='error'>Permission refus&eacute; pour se connecter</h2>");   // login with username and password, or give invalid user message
+$conn_id = ftp_connect(FTP_SERVER);        // set up basic connection
+$login_result = ftp_login($conn_id, FTP_USERNAME, FTP_PASSWORD) or die("<h2 class='error'>Permission refus&eacute; pour se connecter</h2>");   // login with username and password, or give invalid user message
 ftp_pasv($conn_id, true) or die("Cannot switch to passive mode");
 if ((!$conn_id) || (!$login_result)) {  // check connection
     // wont ever hit this, b/c of the die call on ftp_login
