@@ -74,7 +74,6 @@ ftp_close($conn_id); // close the FTP stream
     <link href="main.css" rel="stylesheet">
 </head>
 <body>
-    <!--
     <div class="folder-tree">
         <div class="box">
             <h2>Explorateur de dossier</h2>
@@ -83,7 +82,6 @@ ftp_close($conn_id); // close the FTP stream
             </ul>
         </div>
     </div>
-    -->
     <form enctype="multipart/form-data" action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
         <div class="frame">
             <div class="information">
