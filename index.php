@@ -2,11 +2,12 @@
 
 require "config.php";
 
-$path = PATH;
-if(isset($_GET['path'])){
-    $path = '/'.$_GET['path'].'/';
-}
 
+if(isset($_REQUEST['path'])){
+    $path = '/'.$_REQUEST['path'].'/';
+}else{
+	$path = PATH;
+}
 $conn_id = ftp_connect(FTP_SERVER);        // set up basic connection
 $login_result = ftp_login($conn_id, FTP_USERNAME, FTP_PASSWORD) or die("<h2 class='error'>Permission refus&eacute; pour se connecter</h2>");   // login with username and password, or give invalid user message
 ftp_pasv($conn_id, true) or die("Cannot switch to passive mode");
@@ -99,6 +100,7 @@ ftp_close($conn_id); // close the FTP stream
                 <img src="assets/syncing.png" class="syncing">
                 <img src="assets/checkmark.png" class="done">
                 <input name="txt_fileName" type="hidden" id="txt_fileName" tabindex="99" size="1" />
+				<input name="path" type="hidden" value="<?php echo $path; ?>"/>
                 <input class="upload-btn" type="submit" name="SubmitFile" value="Valider" accesskey="ENTER" tabindex="2" />
             </div>
             <div class="warning">
